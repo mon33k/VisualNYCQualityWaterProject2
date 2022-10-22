@@ -6,15 +6,15 @@ import "./NycMap.css";
 import BoroughInfo from "../boroughInfo/BoroughInfo";
 
 const NycMap = ({ data }) => {
-  const geoRef = React.useRef(data);
+  const geoRef = React.useRef();
   const { selectedBorough, setSelectedBorough } = useState();
   const width = 960;
   const height = 500;
 
-  const [x, setX] = useState("450");
-  const [y, setY] = useState("350");
+  // const [x, setX] = useState("450");
+  // const [y, setY] = useState("350");
 
-  const svg = d3.select(geoRef.current); //d3.select("#geo");
+  // const svg = d3.select(geoRef.current); //d3.select("#geo");
 
   var projection = d3
     .geoMercator()
@@ -27,26 +27,31 @@ const NycMap = ({ data }) => {
   console.log("projection ", projection);
 
   let path = d3.geoPath().projection(projection);
-
-  svg
-    .attr("width", width)
-    .attr("height", height)
-    .selectAll("path")
-    .data(nycJson.features)
-    .enter()
-    .append("path")
-    .attr("d", path)
-    .style("fill", "#207582")
-    .style("stroke", "#155A64")
-    .on("mouseover", (e, d) => {
-      mouseMoveEvent(e, d);
-    })
-    .on("mouseout", (e, d) => {
-      mouseOutEvent(e, d);
-    })
-    .on("mousedown", (e, d) => {
-      mouseDownEvent(e, d);
-    });
+  useEffect(() => {
+    // Check that svg element has been rendered
+    if (geoRef.current) {
+      let svg = d3.select(geoRef.current);
+      svg
+        .attr("width", width)
+        .attr("height", height)
+        .selectAll("path")
+        .data(nycJson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .style("fill", "#207582")
+        .style("stroke", "#155A64")
+        .on("mouseover", (e, d) => {
+          mouseMoveEvent(e, d);
+        })
+        .on("mouseout", (e, d) => {
+          mouseOutEvent(e, d);
+        })
+        .on("mousedown", (e, d) => {
+          mouseDownEvent(e, d);
+        });
+    }
+  });
 
   const toolTip = d3
     .select("body")
@@ -81,13 +86,13 @@ const NycMap = ({ data }) => {
   const mouseDownEvent = (e, d) => {
     console.log("okurrr", d.properties.boro_name);
     setSelectedBorough(d.properties.boro_name);
-    d3.select(e.target);
+    // d3.select(e.target);
   };
 
   return (
     <>
       <svg ref={geoRef} className="nyc-svg" onClick={mouseDownEvent} />
-      {selectedBorough ? <BoroughInfo /> : ""}
+      {/* {selectedBorough ? <BoroughInfo /> : ""} */}
     </>
   );
 };
