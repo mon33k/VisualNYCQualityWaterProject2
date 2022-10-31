@@ -7,7 +7,7 @@ import BoroughInfo from "../boroughInfo/BoroughInfo";
 
 const NycMap = ({ data }) => {
   const geoRef = React.useRef();
-  const { selectedBorough, setSelectedBorough } = useState();
+  const [selectedBorough, setSelectedBorough] = useState();
   const width = 960;
   const height = 500;
 
@@ -24,7 +24,7 @@ const NycMap = ({ data }) => {
 
   //   console.log("nycJson", nycJson);
 
-  console.log("projection ", projection);
+  // console.log("projection ", projection);
 
   let path = d3.geoPath().projection(projection);
   useEffect(() => {
@@ -92,7 +92,7 @@ const NycMap = ({ data }) => {
   return (
     <>
       <svg ref={geoRef} className="nyc-svg" onClick={mouseDownEvent} />
-      {/* {selectedBorough ? <BoroughInfo /> : ""} */}
+      {selectedBorough ? <BoroughInfo selectedBorough={selectedBorough} /> : ""}
     </>
   );
 };
