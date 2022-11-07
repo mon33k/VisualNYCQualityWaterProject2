@@ -19,13 +19,15 @@ const NycMap2 = ({ data }) => {
   var projection = d3
     .geoMercator()
     .scale(45000)
-    .center([-73.935242, 40.73061])
+    .center([-73.935242, 40.73061]) //-73.935242, 40.73061
     .translate([width / 2, height / 2]);
 
   //   console.log("nycJson", nycJson);
 
   // console.log("projection ", projection);
 
+  let aa = [1024950, 264277];
+  let bb = [994175, 185107];
   let path = d3.geoPath().projection(projection);
   useEffect(() => {
     // Check that svg element has been rendered
@@ -50,6 +52,21 @@ const NycMap2 = ({ data }) => {
         .on("mousedown", (e, d) => {
           mouseDownEvent(e, d);
         });
+
+      svg
+        .selectAll("circle")
+        .data([aa, bb])
+        .enter()
+        .append("circle")
+        .attr("x", function (d) {
+          console.log(projection(d));
+          return projection(d)[0];
+        })
+        .attr("y", function (d) {
+          return projection(d)[1];
+        })
+        // .attr("r", "8px")
+        .attr("fill", "red");
     }
   });
 
@@ -84,7 +101,7 @@ const NycMap2 = ({ data }) => {
   };
 
   const mouseDownEvent = (e, d) => {
-    console.log("okurrr", d.properties);
+    console.log("okurrr", d.properties); //
     // setSelectedBorough(d.properties.boro_name);
     // d3.select(e.target);
   };
