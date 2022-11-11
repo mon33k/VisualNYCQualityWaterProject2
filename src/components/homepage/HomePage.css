@@ -1,0 +1,23 @@
+.homepage-container {
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.svg-container {
+  padding-left: 20px;
+}
+
+.homepage-header {
+  font-family: "Playfair Display";
+  font-size: 80px;
+  color: #207582;
+}
+
+.header-blurb {
+  font-size: 25px;
+  color: #9ebdc1;
+  text-align: left;
+  padding: 20px;
+  width: 500px;
+}

@@ -5,10 +5,10 @@ import nycJson from "../../geography/values2.json";
 // import "./NycMap.css";
 // import BoroughInfo from "../boroughInfo/BoroughInfo";
 
-const NycMap2 = ({ data }) => {
+const NycMapLatest = ({ data }) => {
   const geoRef = React.useRef();
   // const [selectedBorough, setSelectedBorough] = useState();
-  const width = 960;
+  const width = 500;
   const height = 500;
 
   // const [x, setX] = useState("450");
@@ -92,7 +92,7 @@ const NycMap2 = ({ data }) => {
       .style("left", e.pageX + "px")
       .text(`${d.properties.neighborhood}`);
 
-    d3.select(e.target).style("fill", "orange");
+    d3.select(e.target).style("fill", "white");
   };
 
   const mouseOutEvent = (e, d) => {
@@ -113,4 +113,4 @@ const NycMap2 = ({ data }) => {
   );
 };
 
-export default NycMap2;
+export default NycMapLatest;
