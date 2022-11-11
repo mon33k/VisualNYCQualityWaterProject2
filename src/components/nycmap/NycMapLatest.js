@@ -84,7 +84,7 @@ const NycMapLatest = ({ data }) => {
     .text("a simple tooltip");
 
   const mouseMoveEvent = (e, d) => {
-    // console.log("event here ", e.target);
+    console.log("event here ", e.target);
     // console.log("d", d);
     toolTip
       .style("visibility", "visible")
