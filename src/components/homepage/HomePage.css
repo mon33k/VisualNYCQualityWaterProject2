@@ -21,3 +21,22 @@
   padding: 20px;
   width: 500px;
 }
+
+@media only screen and (max-device-width: 650px) {
+  .homepage-container {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 5px;
+  }
+  .svg-container {
+    padding: 0;
+  }
+  .homepage-header {
+    font-size: 8vw;
+  }
+  .header-blurb {
+    font-size: 4vw;
+    padding: 0;
+    width: 300px;
+  }
+}
