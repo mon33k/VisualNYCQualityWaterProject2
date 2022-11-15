@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import * as d3Geo from "d3-geo";
 import nycJson from "../../geography/values2.json";
+import apiCalls from "../../data/apicalls";
 // import "./NycMap.css";
 // import BoroughInfo from "../boroughInfo/BoroughInfo";
 
@@ -10,6 +11,10 @@ const NycMapLatest = ({ data }) => {
   // const [selectedBorough, setSelectedBorough] = useState();
   const width = 500;
   const height = 500;
+
+  apiCalls.getSelfReportedInfo().then((response) => {
+    console.log("test ", response.data);
+  });
 
   // const [x, setX] = useState("450");
   // const [y, setY] = useState("350");
