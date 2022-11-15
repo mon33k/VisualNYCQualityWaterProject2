@@ -12,9 +12,14 @@ const NycMapLatest = ({ data }) => {
   const width = 500;
   const height = 500;
 
-  apiCalls.getSelfReportedInfo().then((response) => {
-    console.log("test ", response.data);
-  });
+  apiCalls
+    .getSelfReportedInfo()
+    .then((response) => {
+      response.json();
+    })
+    .then((data) => {
+      console.log("test ", data);
+    });
 
   // const [x, setX] = useState("450");
   // const [y, setY] = useState("350");
